@@ -120,9 +120,11 @@ class main_func():
                         img = cv2.imread("test.jpg")
                         #self.func(temp_vector)
                         senti_obj = sentiment_analysis(img)
-                        emotions = senti_obj.execute()
+                        user_emotion = senti_obj.execute()
                         st.image(senti_obj.img, channels="RGB")
-                        st.text(emotions)
+                        for i in range(2, len(csv_columns)):
+                            string =  "- " + csv_columns[i] + " " + str(user_emotion[csv_columns[i]])
+                            st.subheader(string)
 
         elif choice == "Login":
             st.subheader("Welcome to your customised Vibe tracker")
