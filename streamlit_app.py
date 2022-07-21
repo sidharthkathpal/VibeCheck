@@ -155,29 +155,31 @@ class main_func():
                             with open('test.jpg', 'wb') as file:
                                 file.write(picture.getbuffer())
                                 values = self.fd_obj.detect("test.jpg")
-                                # temp_vector_values = self.fv_obj.verify(values)
+                                temp_vector_values = self.fv_obj.verify(values)
                                 # temp_vector_values = temp_vector_values.reshape(224, 224, 3)
                                 arr4d = np.expand_dims(profile_picture_vec, 0)
                                 profile_values = self.fv_obj.verify(arr4d)
-                                similarity_values = [1]
+                                similarity_values = []
                                 all_img_emotions = []
                                 for i in range(values.shape[0]):
                                     # cv2.imwrite("test.jpg", values[i])
-                                    # temp_vector = temp_vector_values[i]
+                                    temp_vector = temp_vector_values[i]
                                     # st.text(temp_vector_values[i].shape())
                                     # st.text(profile_values.shape())
                                     img = cv2.imread("test.jpg")
-                                    # similarity_values.append(self.compute_similarity(temp_vector, profile_values.T))
+                                    similarity_values.append(self.compute_similarity(temp_vector, profile_values.T))
                                     senti_obj = sentiment_analysis(img)
                                     emotions = senti_obj.execute()
                                     all_img_emotions.append(emotions)
-                                    st.image(senti_obj.img, channels="RGB")
-                                    st.text(emotions)
+                                    #st.image(senti_obj.img, channels="RGB")
+                                    #st.text(emotions)
                                 # st.text(similarity_values)
                                 max_similarity_idx = similarity_values.index(max(similarity_values))
                                 user_emotion = all_img_emotions[max_similarity_idx]
-                                st.text("login user emotion")
-                                st.text(user_emotion)
+                                st.header("login user emotion")
+                                for i in range(2, len(csv_columns)):
+                                    string =  "- " + csv_columns[i] + " " + str(user_emotion[csv_columns[i]])
+                                    st.subheader(string)
                                 user_emotion['day'] = datetime.today().strftime('%A')
                                 user_emotion['username'] = username
                                 user_data_dict.append(user_emotion)
