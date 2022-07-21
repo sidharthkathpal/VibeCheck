@@ -1,0 +1,8 @@
+﻿Emotions,Monday,Tuesday,Wednesday,Thursday,Friday
+angry,0.04,0.4,0.1,0,0.2
+disgust,0,0,0.1,0,0.2
+fear,0.02,0.2,0.8,0,0
+happy,0.01,0.3,0,1,0.5
+sad,0.14,0.1,0,0,0.1
+surprise,0,0,0,0,0
+neutral,0.78,0,0,0,0
