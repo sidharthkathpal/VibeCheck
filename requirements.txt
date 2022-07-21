@@ -1,0 +1,6 @@
+streamlit
+pandas
+tensorflow
+opencv-python
+fer
+facenet-pytorch
